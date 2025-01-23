@@ -1,0 +1,51 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.item {
+    display: flex;
+    background-color: var(--white);
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.info {
+    width: 100%;
+}
+.actions {
+    display: flex;
+    justify-content: end;
+    width: auto;
+}
+.name {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.price {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+.deleteButton {
+    color: #dc2626;
+}
+.quantitySelect {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.qtyContainer {
+    display: flex;
+    align-items: center;
+}
+.quantity {
+    border: 1px solid var(--light-gray);
+    padding: 2px;
+    width: 1.6rem;
+    height: 1.6rem;
+    text-align: center;
+}
+.quantitySelect button {
+    display: flex;
+}

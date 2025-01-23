@@ -1,0 +1,49 @@
+.listContainer {
+    overflow: hidden;
+}
+.list {
+    display: flex;
+    gap: 1rem;
+}
+.list.view {
+    display: grid;
+}
+.list.scroll {
+    overflow-x: scroll;
+    padding-bottom: 0.5rem;
+}
+.list::-webkit-scrollbar {
+    height: 6px;
+}
+.list::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+}
+.list::-webkit-scrollbar-thumb {
+    background-color: #00000000;    /* color of the scroll thumb */
+    border-radius: 20px;
+    transition: all ease 0.2s;
+}
+.listContainer:hover .list::-webkit-scrollbar-thumb {
+    background-color: var(--light-gray);   
+}
+
+@media (min-width: 576px) {
+    .list.view {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 768px) {
+    .list.view {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (min-width: 992px) {
+    .list.view {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (min-width: 1200px) {
+    .list.view {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}

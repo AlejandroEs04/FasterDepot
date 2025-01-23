@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Buy {
+  id          Int             @id @default(autoincrement())
+  userId      Int?
+  email       String?
+  amount      Int
+  date        DateTime        @default(now())
+  active      Boolean         @default(true)
+  status      BuyStatus       @default(RECEIVED)
+  address     String?          
+  user        User?           @relation(fields: [userId], references: [id])
+  productBuy  ProductBuy[]
+}
+
+model Cart {
+  id        Int     @id @default(autoincrement())
+  userId    Int
+  productId Int
+  quantity  Int
+  sizeId    Int?
+  product   Product @relation(fields: [productId], references: [id])
+  size      Size?   @relation(fields: [sizeId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
+}
+
+enum BuyStatus {
+  RECEIVED
+  ONTHEWAY
+  DELIVERED
+}
+
+model ProductSize {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  sizeId    Int
+  product   Product @relation(fields: [productId], references: [id])
+  size      Size    @relation(fields: [sizeId], references: [id])
+}
+
+model Product {
+  id              Int               @id @default(autoincrement())
+  name            String
+  description     String?
+  categoryId      Int?
+  price           Float
+  imageUrl        String?
+  active          Boolean           @default(true)
+  wholesalePrice  Float?           
+  cart            Cart[]
+  sizes  ProductSize[]
+  category            Category?             @relation(fields: [categoryId], references: [id])
+  productBuy      ProductBuy[]
+}
+
+model ProductBuy {
+  id           Int     @id @default(autoincrement())
+  buyId        Int
+  productId    Int
+  quantity     Int
+  sizeId       Int?
+  pricePerUnit Int?
+  buy          Buy     @relation(fields: [buyId], references: [id])
+  product      Product @relation(fields: [productId], references: [id])
+  size         Size?   @relation(fields: [sizeId], references: [id])
+}
+
+model Size {
+  id             Int              @id @default(autoincrement())
+  name           String
+  letter         String
+  cart           Cart[]
+  products ProductSize[]
+  productBuy     ProductBuy[]
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  product     Product[]
+}
+
+model User {
+  id           Int     @id @default(autoincrement())
+  name         String
+  lastName     String
+  password     String
+  email        String
+  number       String?
+  address      String?
+  state        String?
+  city         String?
+  country      String?
+  admin        Boolean @default(false)
+  buy          Buy[]
+  cart         Cart[]
+}

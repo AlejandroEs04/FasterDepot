@@ -1,0 +1,105 @@
+import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/ReactToastify.css'
+import { useApp } from '../hooks/useApp';
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
+import { Product } from '../types';
+
+export default function Layout() {
+    const [showSearch, setShowSearch] = useState(false)
+    const [productsFiltered, setProductsFiltered] = useState<Product[]>([])
+    const { state } = useApp()
+
+    const navigate = useNavigate()
+
+    const handleScroll = () => setShowSearch(false)
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+    }, [])
+
+    useEffect(() => {
+        setProductsFiltered(state.products)
+    }, [state.products])
+
+    const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
+        setProductsFiltered(state.products.filter(p => p.name.includes(e.target.value)))
+    }
+
+    const handleEnter = (e : any) => {
+        const keyCode = e.keyCode;
+
+        if (keyCode === 13) 
+            setShowSearch(false)
+            navigate('/products')
+    }
+
+    const qtyProducts = useMemo(() => state.cart.reduce((total, product) => total + product.quantity, 0), [state.cart])
+
+    return (
+        <>
+            <header className='header'>
+                <div className='container navbar'>
+                    <Link to={'/'} className='logo-container'>
+                        <img src="/Logo.png" alt="Logo Faster Depot" />
+                    </Link>
+
+                    <div 
+                        className='search-container'
+                    >
+                        <input onChange={handleFilter} onKeyDown={handleEnter} onClick={() => setShowSearch(true)} type='search' placeholder='Buscar Producto' className='search-bar' />
+
+                        <div className={`search-results ${showSearch && 'show-search-bar'}`}>
+                            {productsFiltered.map(p => (
+                                <Link key={p.id} onClick={() => setShowSearch(false)} to={`/products/${p.id}`}>{p.name}</Link>
+                            ))}
+                        </div>
+                        
+                    </div>
+
+                    <nav className='navigation'>
+                        <Link to={'/'}>Inicio</Link>
+                        <Link to={'/products'}>Productos</Link>
+                        <Link to={'/porfile'}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                        </Link>
+                        <Link className='container-point' to={'/cart'}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                            </svg>
+                            
+                            {qtyProducts > 0 && (
+                                <div className='number-point'><p>{qtyProducts}</p></div>
+                            )}
+                        </Link>
+                    </nav>
+                </div>
+            </header>
+            
+            <main>
+                <Outlet />
+            </main>
+
+            <ToastContainer
+                position="bottom-right"
+                autoClose={2500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
+
+            {showSearch && (
+                <div onClick={() => setShowSearch(false)} className='close-search-bar'></div>
+            )}
+
+            {/* <LoginContainer /> */}
+        </>
+    )
+}

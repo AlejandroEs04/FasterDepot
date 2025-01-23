@@ -1,0 +1,11 @@
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+}
+.input {
+    background-color: var(--white);
+    width: 100%;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    border: 0.5px solid var(--gray);
+}

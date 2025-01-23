@@ -1,0 +1,85 @@
+.container {
+    background-color: var(--white);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.width {
+    min-width: 15rem;
+    max-width: 15rem;
+}
+.itemName {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    height: 10rem;
+    padding: 0.4rem;
+}
+.imageContainer img {
+    height: 100%;
+    width: auto;
+}
+.price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+.itemInfo {
+    height: 6.5rem;
+}
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.textContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.noAvaibleText {
+    text-align: center;
+    color: var(--gray);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.addCart {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.selectNumber {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.selectNumber button {
+    display: flex;
+}
+.quantityContainer {
+    border: 1px solid var(--gray);
+    text-align: center;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.selectAdd {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.selectAdd p {
+    width: 0;
+    overflow: hidden;
+    transition: all ease 0.3s;
+    interpolate-size: allow-keywords;
+}
+.addCart:hover .selectAdd p {
+    width: auto;
+    overflow: hidden;
+}
