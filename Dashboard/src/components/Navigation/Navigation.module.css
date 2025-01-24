@@ -1,0 +1,26 @@
+.navContainer {
+    padding: 1rem;
+    padding-top: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.navContainer .link {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 0.8rem 0.5rem;
+    transition: all ease 0.2s;
+}
+.navContainer .link svg {
+    width: 3rem;
+}
+.navContainer .link.active, .navContainer .link:hover {
+    background-color: var(--strong-gray);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+}

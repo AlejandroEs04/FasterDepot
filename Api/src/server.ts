@@ -6,6 +6,7 @@ import { corsOptions } from './config/cors'
 import productRoutes from './routes/productRoutes'
 import buyRoutes from './routes/buyRoutes'
 import paypalRoutes from './routes/payPalRoutes'
+import authRoutes from './routes/authRoutes'
 
 dotenv.config()
 
@@ -20,5 +21,6 @@ app.use(cors(corsOptions))
 app.use('/products', productRoutes)
 app.use('/checkout', paypalRoutes)
 app.use('/buy', buyRoutes)
+app.use('/auth', authRoutes)
 
 export default app

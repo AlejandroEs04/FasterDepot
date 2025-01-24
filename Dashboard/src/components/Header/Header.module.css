@@ -1,0 +1,29 @@
+.header {
+    padding: 1rem;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.subContainer {
+    display: flex;
+    gap: 2rem;
+}
+.subContainer button svg {
+    color: var(--white);
+    cursor: pointer;
+}
+.header nav a, .header nav {
+    list-style: none;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 200;
+    color: #858585;
+    transition: color ease 0.2s;
+}
+.header nav a.active {
+    color: var(--white);
+}
+.header nav a:hover {
+    color: var(--white);
+}

@@ -11,8 +11,6 @@ const statusDictionary : {[key: string] : string} = {
 export default function Purchases() {
     const { state } = useApp()
 
-    console.log(state.purchases)
-
     return (
         <>
             <div className="container mt-1">

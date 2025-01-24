@@ -89,17 +89,17 @@ model Category {
 }
 
 model User {
-  id           Int     @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   name         String
   lastName     String
   password     String
-  email        String
+  email        String   @unique
   number       String?
   address      String?
   state        String?
   city         String?
   country      String?
-  admin        Boolean @default(false)
+  admin        Boolean  @default(false)
   buy          Buy[]
   cart         Cart[]
 }
