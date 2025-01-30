@@ -9,8 +9,11 @@ export type Product = {
     description: string 
     price: number 
     wholesalePrice: number 
+    image: File | null
     imageUrl: string | null
 }
+
+export type ProductRegister = Pick<Product, 'name' | 'price' | 'wholesalePrice' | 'description' | 'image' | 'imageUrl'>
 
 export type Type = {
     ID: number

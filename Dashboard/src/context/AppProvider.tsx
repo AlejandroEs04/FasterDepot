@@ -1,6 +1,7 @@
 import { createContext, Dispatch, ReactNode, useEffect, useReducer, useState } from "react"
 import { AppActions, AppReducer, AppState, initialState } from "../reducers/app-reducer"
 import { authLogin } from "../api/login"
+import { getProducts } from "../api/products"
 
 type AppContextProps = {
     state: AppState, 
@@ -19,6 +20,8 @@ export const AppContext = createContext<AppContextProps>(null!)
 export const AppProvider = ({children} : AppProviderProps) => {
     const [loading, setLoading] = useState(true)
     const [state, dispatch] = useReducer(AppReducer, initialState)
+
+    const productsRequest = async() => dispatch({ type: 'set-products', payload: { products: await getProducts() } })
 
     useEffect(() => {
         const autenticarUsuario = async() => {
@@ -39,6 +42,7 @@ export const AppProvider = ({children} : AppProviderProps) => {
             }
         }
         
+        productsRequest()
         autenticarUsuario();
     }, [])
     

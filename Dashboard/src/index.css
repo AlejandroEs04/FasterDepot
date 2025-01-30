@@ -51,7 +51,7 @@ a {
   transition: color ease 0.2s;
 }
 p {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 300;
   margin: 0;
 }
@@ -86,6 +86,15 @@ button {
 .btn-primary:hover {
   background-color: var(--black-hover);
 }
+.btn-danger {
+  background-color: #dc2626;
+  color: var(--white);
+  border-radius: 1rem;
+  border: 0.5px solid transparent;
+}
+.btn-danger:hover {
+  background-color: #b91c1c;
+}
 .size-6 {
   width: 2.2rem;
   height: 2.2rem;
@@ -109,9 +118,16 @@ button {
   display: flex;
 }
 .main-2 .main-nav {
+  width: 0;
+  overflow: hidden;
+  min-width: 0;
+  max-width: 0;
+  transition: all ease 0.2s;
+}
+.main-2 .main-nav.active {
   width: 100%;
-  min-width: 20rem;
   max-width: 25rem;
+  overflow: visible;
 }
 .main-2 main {
   width: 100%;

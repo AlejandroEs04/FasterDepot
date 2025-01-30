@@ -6,6 +6,9 @@
     flex-direction: column;
     gap: 2rem;
 }
+.navContainer h2 {
+    text-wrap: nowrap;
+}
 .navContainer .link {
     display: flex;
     gap: 1rem;

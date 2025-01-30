@@ -3,19 +3,24 @@ import { Outlet } from 'react-router-dom'
 import Navigation from '../components/Navigation/Navigation'
 import LoginModal from '../components/LoginModal/LoginModal'
 import { useApp } from '../hooks/useApp'
+import { ToastContainer } from 'react-toastify'
+import { useState } from 'react'
 
 export default function Layout() {
     const { state, loading } = useApp();
+    const [showNavigate, setShowNavigate] = useState(false)
+
+    const handleToggleNav = () => setShowNavigate(!showNavigate)
 
     return (
         <>
             <div className='main-2'>
-                <nav className='main-nav'>
+                <nav className={`${showNavigate && 'active'} main-nav`}>
                     <Navigation />
                 </nav>
 
                 <main>
-                    <Header />
+                    <Header handleToggleNav={handleToggleNav} />
                     <Outlet />
                 </main>
             </div>
@@ -31,6 +36,8 @@ export default function Layout() {
             {(!state.auth && !loading) && (
                 <LoginModal />
             )}
+
+           <ToastContainer /> 
         </>
     )
 }

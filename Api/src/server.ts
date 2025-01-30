@@ -7,6 +7,7 @@ import productRoutes from './routes/productRoutes'
 import buyRoutes from './routes/buyRoutes'
 import paypalRoutes from './routes/payPalRoutes'
 import authRoutes from './routes/authRoutes'
+import uploaderRoutes from './routes/uploaderRoutes'
 
 dotenv.config()
 
@@ -22,5 +23,6 @@ app.use('/products', productRoutes)
 app.use('/checkout', paypalRoutes)
 app.use('/buy', buyRoutes)
 app.use('/auth', authRoutes)
+app.use('/upload', uploaderRoutes)
 
 export default app

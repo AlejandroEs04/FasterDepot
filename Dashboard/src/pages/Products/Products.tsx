@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useApp } from "../../hooks/useApp";
 import { useEffect, useState } from "react";
 import { Product } from "../../types";
@@ -7,6 +7,7 @@ import { getProducts } from "../../api/products";
 export default function Products() {
     const [products, setProducts] = useState<Product[]>([])
     const { dispatch } = useApp()
+    const navigate = useNavigate()
 
     const productsRequest = async() => setProducts(await getProducts())
 
@@ -40,7 +41,7 @@ export default function Products() {
 
                         <tbody>
                             {products.map(product => (
-                                <tr key={product.id}>
+                                <tr onClick={() => navigate(`/products/edit/${product.id}`)} key={product.id}>
                                     <td>{product.id}</td>
                                     <td>{product.name}</td>
                                     <td>{product.price}</td>
