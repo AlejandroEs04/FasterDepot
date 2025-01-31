@@ -15,10 +15,10 @@ export default function CheckoutListItem({ item } : { item: Cart }) {
 
     return (
         <tr>
-            <td>{currentProduct?.name}</td>
-            <td className="text-end border-left">{currencyFormat(currentProduct?.price!)}</td>
-            <td className="text-end border-left">{item.quantity} producto{item.quantity > 1 && 's'}</td>
-            <td className="text-end border-left">{currencyFormat(getTotal(item.productId, item.quantity, state.products))}</td>
+            <td className="line-clamp-2">{currentProduct?.name}</td>
+            <td className="text-end border-left text-nowrap">{currencyFormat(currentProduct?.price!)}</td>
+            <td className="text-end border-left text-nowrap">{item.quantity} producto{item.quantity > 1 && 's'}</td>
+            <td className="text-end border-left text-nowrap">{currencyFormat(getTotal(item.productId, item.quantity, state.products))}</td>
         </tr>
     )
 }

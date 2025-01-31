@@ -1,0 +1,6 @@
+.scrollContainer {
+    overflow: hidden;
+}
+.scroll {
+    overflow-y: auto;
+}

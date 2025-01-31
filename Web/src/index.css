@@ -91,6 +91,15 @@ button, input, textarea, select {
 .checkbox-input label {
   font-weight: 500;
 }
+.text-nowrap {
+  text-wrap: nowrap;
+}
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
 h1, h2, h3 {
   font-weight: 600;
 }
@@ -121,6 +130,32 @@ h2 {
   z-index: 2;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
+.hidden-min {
+  visibility: hidden;
+  display: none;
+  width: 0;
+  overflow: none;
+}
+.hidden-max {
+  visibility: visible;
+  display: block;
+  width: auto;
+  overflow: visible;
+}
+@media (min-width: 768px) {
+  .hidden-min {
+    visibility: visible;
+    display: block;
+    width: auto;
+    overflow: visible;
+  }
+  .hidden-max {
+    visibility: hidden;
+    display: none;
+    width: 0;
+    overflow: none;
+  }
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -136,6 +171,9 @@ h2 {
   align-items: center;
   gap: 1rem;
 }
+.navbar .navigation button {
+  display: flex;
+}
 .navbar .navigation a {
   display: flex;
   font-weight: 600;
@@ -144,6 +182,44 @@ h2 {
 }
 .navbar .navigation a:hover {
   color: var(--primary);
+}
+.navside {
+  position: absolute;
+  top: 0;
+  width: 0;
+  overflow: hidden;
+  height: 100%;
+  background-color: var(--white);
+  color: var(--black);
+  z-index: 4;
+  padding: 0;
+  transition: all ease 0.2s;
+}
+.navside.active {
+  width: 100%;
+  overflow: visible;
+  padding: 1rem;
+}
+.navside .navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.navside .top-nav {
+  display: flex;
+  justify-content: end;
+}
+.navside h3 {
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+.navside .navigation a {
+  font-weight: 400;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 .w-full {
   width: 100%;
@@ -239,6 +315,9 @@ h2 {
 }
 .size-7 {
   width: 1.6rem;
+}
+.size-8 {
+  width: 1.8rem;
 }
 .no-wrap {
   flex-wrap: nowrap;
