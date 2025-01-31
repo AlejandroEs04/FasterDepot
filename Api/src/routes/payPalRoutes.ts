@@ -6,10 +6,6 @@ dotenv.config();
 
 const router = express.Router();
 
-console.log(process.env.PAYPAL_API!)
-console.log(process.env.PAYPAL_CLIENT_ID!)
-console.log(process.env.PAYPAL_CLIENT_SECRET!)
-
 const PAYPAL_API = process.env.PAYPAL_API!;
 const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID!;
 const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET!;
