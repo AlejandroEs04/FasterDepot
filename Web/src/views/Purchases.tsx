@@ -1,15 +1,11 @@
+import PurchaseCard from "../components/PurchaseCard/PurchaseCard"
 import RequestEmail from "../components/RequestEmail/RequestEmail"
-import { currencyFormat } from "../helpers"
 import { useApp } from "../hooks/useApp"
-
-const statusDictionary : {[key: string] : string} = {
-    RECEIVED: 'Recibido',
-    ONTHEWAY: 'En camino',
-    DELIVERED: 'Entregado',
-}
 
 export default function Purchases() {
     const { state } = useApp()
+
+    console.log(state.purchases)
 
     return (
         <>
@@ -18,11 +14,8 @@ export default function Purchases() {
 
                 <div>
                     {state.purchases.map(p => (
-                        <div key={p.id} className="content">
-                            <p>{new Date(p.date).toLocaleDateString('es-ES', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }</p>
-                            <p>{currencyFormat(p.amount)}</p>
-                            <p>{statusDictionary[p.status]}</p>
-                        </div>
+                        <PurchaseCard key={p.id} purchase={p} />
+                        
                     ))}
                 </div>
             </div>
