@@ -5,8 +5,10 @@ export default function Porfile() {
         <div className='container'>
             <h1>Perfil</h1>
 
-            <div>
-                <Link to={'/porfile/purchases'}>Ver compras</Link>
+            <h3 className='text-center font-bold'>Usted no ha iniciado sesión</h3>
+
+            <div className='mt-1'>
+                <Link to={'/porfile/purchases'} className='btn btn-primary'>Ver compras</Link>
             </div>
         </div>
     )

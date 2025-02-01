@@ -154,9 +154,9 @@ h2 {
 }
 .hidden-min {
   visibility: hidden;
-  display: none;
+  display: none !important;
   width: 0;
-  overflow: none;
+  overflow: hidden;
 }
 .hidden-max {
   visibility: visible;
@@ -167,15 +167,15 @@ h2 {
 @media (min-width: 768px) {
   .hidden-min {
     visibility: visible;
-    display: block;
+    display: flex !important;
     width: auto;
     overflow: visible;
   }
   .hidden-max {
     visibility: hidden;
-    display: none;
+    display: none !important;
     width: 0;
-    overflow: none;
+    overflow: hidden;
   }
 }
 .navbar {
@@ -206,7 +206,7 @@ h2 {
   color: var(--primary);
 }
 .navside {
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 0;
   overflow: hidden;
