@@ -138,6 +138,8 @@ export default function Layout() {
                 <div onClick={() => setShowSearch(false)} className='close-search-bar'></div>
             )}
 
+            <Link to={`/help`} className='question-mark'>?</Link>
+
             {/* <LoginContainer /> */}
         </>
     )
