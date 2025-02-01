@@ -8,6 +8,7 @@ import Cart from './views/Cart'
 import Checkout from './views/Checkout'
 import Porfile from './views/Porfile'
 import Purchases from './views/Purchases'
+import Help from './views/Help'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<Index />} />
+            <Route path='help' element={<Help />} />
             <Route path='products' element={<Products />} />
             <Route path='products/:id' element={<Product />} />
             <Route path='cart' element={<Cart />} />
