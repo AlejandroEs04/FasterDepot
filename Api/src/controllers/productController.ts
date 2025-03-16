@@ -1,7 +1,9 @@
 import { PrismaClient } from "@prisma/client"
 import { Request, Response } from "express"
+import Stripe from "stripe"
 
 const prisma = new PrismaClient()
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export class ProductController {
     static getProducts = async(req: Request, res: Response) => {
@@ -26,16 +28,52 @@ export class ProductController {
 
     static registerProduct = async(req: Request, res: Response) => {
         try {
+            const { name, description, categoryId, price, imageUrl } = req.body;
+      
+            const stripeProduct = await stripe.products.create({
+                name,
+                description,
+                images: [imageUrl],
+            });
+      
+            const stripePrice = await stripe.prices.create({
+                unit_amount: price * 100,
+                currency: "usd",
+                product: stripeProduct.id,
+            });
+      
+            const newProduct = await prisma.product.create({
+                data: {
+                    name,
+                    description,
+                    categoryId,
+                    price,
+                    imageUrl,
+                    stripeProductId: stripeProduct.id,
+                    stripePriceId: stripePrice.id,
+                },
+            });
+      
+            res.json({ message: "Producto registrado correctamente", product: newProduct });
+          } catch (error) {
+            console.error("Error creando producto:", error);
+            res.status(500).send("Hubo un error");
+          }
+    } 
+
+    static uploadProduct = async(req: Request, res: Response) => {
+        try {
             const product = req.body
 
-            console.log(product)
-
-            await prisma.product.create({
+            await prisma.product.update({
+                where: {
+                    id: product.id
+                }, 
                 data: {
                     name: product.name, 
-                    description: product.description, 
-                    categoryId: product.categoryId, 
                     price: product.price, 
+                    wholesalePrice: product.wholesalePrice, 
+                    description: product.description, 
                     imageUrl: product.imageUrl
                 }
             })

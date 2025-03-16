@@ -15,6 +15,7 @@ model Buy {
   date        DateTime        @default(now())
   active      Boolean         @default(true)
   status      BuyStatus       @default(RECEIVED)
+  paymentId   String          @unique
   address     String?          
   user        User?           @relation(fields: [userId], references: [id])
   productBuy  ProductBuy[]
@@ -53,7 +54,9 @@ model Product {
   price           Float
   imageUrl        String?
   active          Boolean           @default(true)
-  wholesalePrice  Float?           
+  wholesalePrice  Float?     
+  stripeProductId String?
+  stripePriceId   String?     
   cart            Cart[]
   sizes  ProductSize[]
   category            Category?             @relation(fields: [categoryId], references: [id])

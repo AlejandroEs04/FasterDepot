@@ -2,31 +2,16 @@
 import CheckoutList from "../components/CheckoutList/CheckoutList";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { useApp } from "../hooks/useApp";
-import PayPalButton from "../components/PayPalButton/PayPalButton";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import { currencyFormat, getTotal } from "../helpers";
 import Input from "../components/Input/Input";
 import { Address } from "../types";
 import ItemsList from "../components/ItemList/ItemsList";
-import { registerBuy } from "../api/buy";
+import { createCheckoutSession } from "../api/checkout";
 
 export default function Checkout() {
     const { state, dispatch } = useApp()
-    const [generate, setGenerate] = useState(true)
     const [useAddress, setUseAddress] = useState(true)
     const [address, setAddress] = useState<Address>(state.address)
-    const navigate = useNavigate()
-
-    const handleSuccess = async(details: any) => {
-        const res = await registerBuy(state.cart, address, details.payer.email_address)
-        toast.success(res)
-        
-        dispatch({ type: 'reset-cart' })
-        localStorage.removeItem('cart')
-
-        navigate('/')
-    };
 
     const handleChange = (e : ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -51,12 +36,18 @@ export default function Checkout() {
         dispatch({ type: 'update-address', payload: { address } })
     }, [address])
 
-    useEffect(() => {
-        if(isIncomplete) setGenerate(true)
-    }, [state.address, useAddress])
-
-
     if(state.products.length === 0) return <p>Cargando</p>
+
+    const checkout = async () => {
+        try {
+            const sessionUrl = await createCheckoutSession(state.cart);
+            if (sessionUrl) {
+                window.location.href = sessionUrl;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+      };
 
     return (
         <div className="container">
@@ -149,8 +140,7 @@ export default function Checkout() {
                                 </div>
                             ) : (
                                 <>
-                                    <PayPalButton amount={subtotal} onSuccess={handleSuccess} generate={generate} setGenerate={setGenerate} />
-                                    
+                                    <button onClick={checkout} className="btn btn-primary w-full">Finalizar compra</button>
                                 </>
                             )}
                         </div>

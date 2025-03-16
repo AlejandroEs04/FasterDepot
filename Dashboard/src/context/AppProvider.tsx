@@ -2,6 +2,7 @@ import { createContext, Dispatch, ReactNode, useEffect, useReducer, useState } f
 import { AppActions, AppReducer, AppState, initialState } from "../reducers/app-reducer"
 import { authLogin } from "../api/login"
 import { getProducts } from "../api/products"
+import { getAllBuys } from "../api/buys"
 
 type AppContextProps = {
     state: AppState, 
@@ -23,6 +24,8 @@ export const AppProvider = ({children} : AppProviderProps) => {
 
     const productsRequest = async() => dispatch({ type: 'set-products', payload: { products: await getProducts() } })
 
+    const buysRequest = async() => console.log(await getAllBuys())
+
     useEffect(() => {
         const autenticarUsuario = async() => {
             const token = localStorage.getItem('token');
@@ -43,6 +46,7 @@ export const AppProvider = ({children} : AppProviderProps) => {
         }
         
         productsRequest()
+        buysRequest()
         autenticarUsuario();
     }, [])
     

@@ -7,7 +7,6 @@
   --black: #1f1d1d;
   --black-hover: #111111;
 }
-
 html {
   position: relative;
   display: flex;
@@ -247,4 +246,20 @@ button {
 }
 .table tbody tr:hover {
   background-color: #838383b4;
+}
+.indexNav {
+  display: flex;
+  gap: 1.2rem;
+  width: 100%;
+  background-color: var(--black);
+  border: 0.5px solid var(--strong-gray);
+  padding: 1.4rem 2rem;
+  border-radius: 1rem;
+}
+.indexNav a {
+  font-size: 1.3rem;
+  color: var(--gray);
+}
+.indexNav a:hover {
+  color: var(--white);
 }

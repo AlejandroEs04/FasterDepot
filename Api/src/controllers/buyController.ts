@@ -6,6 +6,16 @@ import { getTotal } from "../utils"
 const prisma = new PrismaClient()
 
 export class BuyController {
+    static getAllBuys = async(req: Request, res: Response) => {
+        try {
+            const buys = await prisma.buy.findMany()
+            res.json(buys)
+        } catch (error) {
+            console.log(error)
+            res.status(500).json("Hubo un error")
+        }
+    }
+
     static getPayerBuy = async(req: Request, res: Response) => {
         const { email } : { email: string } = req.body
         
@@ -32,12 +42,19 @@ export class BuyController {
     }
 
     static registerBuy = async(req: Request, res: Response) => {
-        const { cart, userId, address, email } : { cart: ProductCart[], userId: number, address: Address, email: string } = req.body
+        const { cart, userId, address, email, paymentId } : 
+            { cart: ProductCart[], userId: number, address: Address, email: string, paymentId: string } = req.body
 
         try {
             const products = await prisma.product.findMany()
 
             const amount = cart.reduce((total, product) => total + getTotal(product.productId, product.quantity, products), 0)
+
+            const existsBuy = await prisma.buy.findUnique({
+                where: {
+                    paymentId
+                }
+            })
 
             const buy = await prisma.buy.create({
                 data: {
@@ -48,13 +65,16 @@ export class BuyController {
                         ', ' + address.city + 
                         ', ' + address.state + 
                         ', ' + address.country, 
-                    email
+                    email, 
+                    paymentId
                 }
             })
 
             const productsCart = cart.map(p => {
                 const product : ProductCart = {
-                    ...p,
+                    productId: p.productId, 
+                    sizeId: p.sizeId, 
+                    quantity: p.quantity,
                     pricePerUnit: products.filter(i => i.id === p.productId)[0].price, 
                     buyId: buy.id
                 }
@@ -66,9 +86,8 @@ export class BuyController {
                 data: productsCart
             })
 
-            res.send('Su compra se registro correctamente')
+            res.send('Se ha realizado la compra con éxito')
         } catch (error) {
-            console.log(error)
             res.status(500).send('Hubo un error')
         }
     }

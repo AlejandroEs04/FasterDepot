@@ -9,6 +9,7 @@ import Checkout from './views/Checkout'
 import Porfile from './views/Porfile'
 import Purchases from './views/Purchases'
 import Help from './views/Help'
+import ConfirmCheckout from './views/ConfirmCheckout'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path='checkout' element={<Checkout />} />
             <Route path='porfile' element={<Porfile />} />
             <Route path='porfile/purchases' element={<Purchases />} />
+            <Route path='checkout-success' element={<ConfirmCheckout />} />
           </Route>
         </Routes>
       </AppProvider>

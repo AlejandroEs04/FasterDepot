@@ -570,3 +570,12 @@ h2 {
 .container-bg-white.mt-1:first-of-type {
   margin: 0;
 }
+.alert {
+  padding: 0.4rem;
+  border-radius: 1rem;
+}
+.alert-success {
+  background-color: #bbf7d0;
+  color: var(--green-dark);
+  border: 1px solid var(--green-dark);
+}

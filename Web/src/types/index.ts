@@ -59,10 +59,12 @@ export type Product = {
     active: boolean;
     sizes: ProductSize[];
     category: Category | null;
+    stripePriceId: string
 };
 
 export type Cart = {
     productId: Product['id']
+    stripePriceId: string
     quantity: number 
     sizeId?: number | null
 }
