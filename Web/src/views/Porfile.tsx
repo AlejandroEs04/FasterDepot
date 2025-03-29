@@ -6,7 +6,14 @@ export default function Porfile() {
             <h1>Perfil</h1>
 
             <div>
-                <Link to={'/porfile/purchases'}>Ver compras</Link>
+                <h3 className='text-center font-bold'>Usted no ha iniciado sesión</h3>
+                <div className='text-center'>
+                    <Link className='text-gray text-center' to={'/login'}>Iniciar sesión</Link>
+                </div>
+            </div>
+
+            <div className='mt-1'>
+                <Link to={'/porfile/purchases'} className='btn btn-primary'>Ver compras</Link>
             </div>
         </div>
     )

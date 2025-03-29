@@ -9,17 +9,20 @@ export type Alert = {
 }
 
 export type User = {
-    id: number
+    id?: number
     name: string 
     lastName: string 
     email: string
     number: string
-    address: string
-    state: string
-    city: string
-    country: string
-    admin: boolean
+    address?: string
+    state?: string
+    city?: string
+    country?: string
+    admin?: boolean
+    password?: string
 }
+
+export type UserLogin = Pick<User, 'email' | 'number' | 'password'>
 
 export type Address = {
     address: string;
@@ -59,10 +62,12 @@ export type Product = {
     active: boolean;
     sizes: ProductSize[];
     category: Category | null;
+    stripePriceId: string
 };
 
 export type Cart = {
     productId: Product['id']
+    stripePriceId: string
     quantity: number 
     sizeId?: number | null
 }

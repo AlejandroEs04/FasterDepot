@@ -1,6 +1,7 @@
 export type ProductCart = {
     productId: number
     sizeId: number | null 
+    stripePriceId?: string
     quantity: number
     pricePerUnit: number 
     buyId: number

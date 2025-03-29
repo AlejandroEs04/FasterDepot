@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom'
 
 export default function Cart() {
     const { state } = useApp()
-    
-    console.log(state.cart)    
 
     const getTotal = (id: number, qty: number) => {
         if(state.products.length === 0) return 0

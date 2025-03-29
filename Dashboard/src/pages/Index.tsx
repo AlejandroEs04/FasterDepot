@@ -14,11 +14,9 @@ export default function Index() {
         <div className='container'>
             <h1>Account</h1>
 
-            <div className={`${styles.indexNav}`}>
+            <div className={`indexNav`}>
                 <Link to={'/'}>Overview</Link>
-                <Link to={'/'}>Settings</Link>
-                <Link to={'/'}>Security</Link>
-                <Link to={'/'}>Charts</Link>
+                <Link to={'/settings'}>Settings</Link>
             </div>
 
             <div className='info-container'>

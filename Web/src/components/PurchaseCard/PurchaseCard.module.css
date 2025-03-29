@@ -1,0 +1,11 @@
+.purchaseCard {
+    background-color: var(--white);
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.price {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.6rem;
+}

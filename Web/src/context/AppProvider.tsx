@@ -35,8 +35,8 @@ export const AppProvider = ({children} : AppProviderProps) => {
         }
     }
 
-    const saveCart = ({ productId, sizeId = null, quantity = 1 } : Cart, noMessage: boolean = false) => {
-        dispatch({ type: 'add-cart', payload: { product: { productId, sizeId, quantity } } })
+    const saveCart = ({ productId, sizeId = null, quantity = 1, stripePriceId } : Cart, noMessage: boolean = false) => {
+        dispatch({ type: 'add-cart', payload: { product: { productId, sizeId, quantity, stripePriceId } } })
 
         if(!noMessage)
             toast.success('Producto guardado al carrito')
