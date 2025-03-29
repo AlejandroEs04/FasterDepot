@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 import LeftSideAuth from "../components/LeftSideAuth/LeftSideAuth"
 import { ChangeEvent, useState } from "react"
 import { User } from "../types"
-import { useApp } from "../hooks/useApp"
 
 export default function SignUp() {
     const [user, setUser] = useState<User>({
@@ -12,8 +11,6 @@ export default function SignUp() {
         number: '', 
         password: ''
     })
-
-    const { state } = useApp()
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
