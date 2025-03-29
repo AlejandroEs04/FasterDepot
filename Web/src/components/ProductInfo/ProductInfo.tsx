@@ -16,7 +16,8 @@ export default function ProductInfo({ product } : ProductInfoProps) {
     const [addCart, setAddCart] = useState({
         productId: product.id, 
         quantity: 1, 
-        sizeId: null
+        sizeId: null, 
+        stripePriceId: product.stripePriceId
     })
 
     const handleSaveCart = () => {

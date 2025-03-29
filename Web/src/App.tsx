@@ -9,6 +9,10 @@ import Checkout from './views/Checkout'
 import Porfile from './views/Porfile'
 import Purchases from './views/Purchases'
 import Help from './views/Help'
+import ConfirmCheckout from './views/ConfirmCheckout'
+import Login from './views/Login'
+import SignUp from './views/SignUp'
+import RecoveryPassword from './views/RecoveryPassword'
 
 function App() {
   return (
@@ -24,6 +28,13 @@ function App() {
             <Route path='checkout' element={<Checkout />} />
             <Route path='porfile' element={<Porfile />} />
             <Route path='porfile/purchases' element={<Purchases />} />
+            <Route path='checkout-success' element={<ConfirmCheckout />} />
+          </Route>
+
+          <Route path='/'>
+            <Route path='login' element={<Login />} />
+            <Route path='signup' element={<SignUp />} />
+            <Route path='recovery-password' element={<RecoveryPassword />} />
           </Route>
         </Routes>
       </AppProvider>

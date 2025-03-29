@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 export default function Layout() {
     const { state, loading } = useApp();
-    const [showNavigate, setShowNavigate] = useState(false)
+    const [showNavigate, setShowNavigate] = useState(true)
 
     const handleToggleNav = () => setShowNavigate(!showNavigate)
 

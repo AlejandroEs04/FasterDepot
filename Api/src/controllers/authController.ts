@@ -16,7 +16,8 @@ export class AuthController {
                     name: user.name, 
                     lastName: user.lastName, 
                     password: passwordHashed, 
-                    email: user.email
+                    email: user.email,
+                    number: user.number
                 }
             })
 

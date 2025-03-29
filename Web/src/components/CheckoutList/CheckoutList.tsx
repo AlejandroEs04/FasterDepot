@@ -3,8 +3,9 @@ import { useApp } from '../../hooks/useApp'
 import CheckoutListItem from './CheckoutListItem/CheckoutListItem'
 import { currencyFormat, getTotal } from '../../helpers'
 import styles from './CheckoutList.module.css'
+import { Cart } from '../../types'
 
-export default function CheckoutList() {
+export default function CheckoutList({ products = [] } : { products? : Cart[] }) {
     const { state } = useApp()
 
     const subtotal = useMemo(() => state.cart.reduce((total, product) => total + getTotal(product.productId, product.quantity, state.products), 0), [state.cart, state.products])
@@ -24,6 +25,10 @@ export default function CheckoutList() {
                     </thead>
                     <tbody>
                         {state.cart.map(i => (
+                            <CheckoutListItem key={`${i.productId}${i.sizeId}`} item={i} />
+                        ))}
+
+                        {products.map(i => (
                             <CheckoutListItem key={`${i.productId}${i.sizeId}`} item={i} />
                         ))}
 

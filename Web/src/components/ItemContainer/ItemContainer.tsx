@@ -14,7 +14,8 @@ export default function ItemContainer({ item, typeContainer = false } : ItemCont
     const [product, setProduct] = useState({
         productId: item.id, 
         quantity: 1, 
-        sizeId: null
+        sizeId: null, 
+        stripePriceId: item.stripePriceId
     })
     const { saveCart } = useApp()
     const navigate = useNavigate()
